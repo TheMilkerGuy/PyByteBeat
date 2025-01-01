@@ -13,5 +13,8 @@ output_file = "output.wav"
 _wav(output_file, buffer, seconds)
 ```
 
+# Cautions
+There are **NO** official PyPi modules of this!
+
 # Modules used
 There are no modules used, it's 100% pure Python (and Cowy love 😘)
