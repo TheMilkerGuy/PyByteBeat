@@ -1,5 +1,5 @@
 # PyByteBeat
-Process your ByteBeat codes and output .wav files with Python
+Process your ByteBeat codes and output .wav files with Python (made by The Milker Guy because yes)
 
 # How to use:
 Paste the **PyByteBeat.py** source and make sure to put it right with your Python file.
@@ -14,7 +14,7 @@ _wav(output_file, buffer, seconds)
 ```
 
 # Cautions
-There are **NO** official PyPi modules of this!
+There are **NO** real PyPi modules of this so watch out for malicious modules! The only official source is this repository.
 
 # Modules used
 There are no modules used, it's 100% pure Python (and Cowy love 😘)
