@@ -2,6 +2,8 @@
 Process your ByteBeat codes and output .wav files with Python
 
 # How to use:
+Paste the **PyByteBeat.py** source and make sure to put it right with your Python file.
+Example of use (in your Python file):
 ```python
 from PyByteBeat import *
 equation = "((t >> 10) & 42) * t"
