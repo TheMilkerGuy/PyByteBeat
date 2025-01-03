@@ -16,5 +16,5 @@ _wav(output_file, buffer, seconds)
 # Cautions
 There are **NO** real PyPi modules of this so watch out for malicious modules! The only official source is this repository.
 
-# Modules used
-There are no modules used, it's 100% pure Python (and Cowy love 😘)
+# Do I have to install any Pip libraries?
+No, this script works without any Pip libraries but you surely need some Cowy love 😘.
