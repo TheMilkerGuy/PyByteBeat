@@ -1,6 +1,10 @@
 # PyByteBeat
 Process your ByteBeat codes and output .wav files with Python (made by The Milker Guy because yes)
 
+# Update:
+Key fixes are established.
+Compatible with math functions with the help of built-in math module.
+
 # How to use:
 Paste the **PyByteBeat.py** source and make sure to put it right with your Python file.
 Example of use (in your Python file):
