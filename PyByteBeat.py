@@ -1,35 +1,44 @@
-from math import *
+import math
 from random import random as rand
 
 def div(a, b): return a // b if b else 0
-def truediv(a, b): return a / b if b else 0
 def b_and(a, b): return int(a) & int(b)
 def b_or(a, b): return int(a) | int(b)
 def rs(a, b): return int(a) >> int(b)
 def ls(a, b): return int(a) << int(b)
 def pw(a, b): return a ** b
 
+functions = {
+    'acos':math.acos,'acosh':math.acosh,'asin':math.asin,'asinh':math.asinh,'atan':math.atan,'atan2':math.atan2,
+    'atanh':math.atanh,'cbrt':math.cbrt,'ceil':math.ceil,'comb':math.comb,'copysign':math.copysign,'cos':math.cos,
+    'cosh':math.cosh,'degrees':math.degrees,'dist':math.dist,'e':math.e,'erf':math.erf,'erfc':math.erfc,'exp':math.exp,
+    'exp2':math.exp2,'expm1':math.expm1,'fabs':math.fabs,'factorial':math.factorial,'floor':math.floor,'fma':math.fma,
+    'fmod':math.fmod,'frexp':math.frexp,'fsum':math.fsum,'gamma':math.gamma,'gcd':math.gcd,'hypot':math.hypot,
+    'inf':math.inf,'isclose':math.isclose,'isfinite':math.isfinite,'isinf':math.isinf,'isnan':math.isnan,'isqrt':math.isqrt,
+    'lcm':math.lcm,'ldexp':math.ldexp,'lgamma':math.lgamma,'log':math.log,'log10':math.log10,'log1p':math.log1p,'log2':math.log2,
+    'modf':math.modf,'nan':math.nan,'nextafter':math.nextafter,'perm':math.perm,'pi':math.pi,'pow':math.pow,'prod':math.prod,
+    'radians':math.radians,'remainder':math.remainder,'sin':math.sin,'sinh':math.sinh,'sqrt':math.sqrt,'sumprod':math.prod,
+    'tan':math.tan,'tanh':math.tanh,'tau':math.tau,'trunc':math.trunc,'ulp':math.ulp,'abs':abs,'int':int,'round':round,
+    '^':pw,'//':div,'/':div,'&':b_and,'|':b_or,'>>':rs,'<<':ls
+}
+
+def _parse(equation, t):
+    equation = equation.replace('t', 'int(t)')
+    equation = equation.replace('/', '//')
+    equation = equation.replace('////', '//')
+    try:
+        local_vars = {'t': int(t)}
+        local_vars.update(functions)
+        return eval(equation, {"__builtins__": None}, local_vars)
+    except Exception as e:
+        print(e)
+        return 0
+
 def _buffer(eq, s, k=8000):
     buffer = bytearray()
-    for t in range(int(k) * s):
-        try:
-            sample = abs(int(eval(eq, {'acos': acos,'acosh': acosh,'asin': asin,'asinh': asinh,'atan': atan,'atan2': atan2,
-        'atanh': atanh,'cbrt': cbrt,'ceil': ceil,'comb': comb,'copysign': copysign,'cos': cos,
-        'cosh': cosh,'degrees': degrees,'dist': dist,'e': 2.718281828459045,'erf': erf,'erfc': erfc,'exp': exp,
-        'exp2': exp2,'expm1': expm1,'fabs': fabs,'factorial': factorial,'floor': floor,'fma': fma,
-        'fmod': fmod,'frexp': frexp,'fsum': fsum,'gamma': gamma,'gcd': gcd,'hypot': hypot,'inf': inf,
-        'isclose': isclose,'isfinite': isfinite,'isinf': isinf,'isnan': isnan,'isqrt': isqrt,
-        'lcm': lcm,'ldexp': ldexp,'lgamma': lgamma,'log': log,'log10': log10,'log1p': log1p,'log2': log2,
-        'modf': modf,'nan': nan,'nextafter': nextafter,'perm': perm,'pi': pi,'pow': pow,'prod': prod,
-        'radians': radians,'remainder': remainder,'sin': sin,'sinh': sinh,
-        'sqrt': sqrt,'sumprod': prod,'tan': tan,'tanh': tanh,'tau': tau,'trunc': trunc,'ulp': ulp,
-        'abs': abs, 'int': int, 'round': round, '^': pw, 't': t,
-        '//': div, '/': truediv, '&': b_and, '|': b_or, '>>': rs, '<<': ls, 'ramd': rand
-        })))
-            sample = sample % 256
-        except Exception as e:
-            print(f"Error evaluating equation at t={t}: {e}")
-            sample = 0
+    for t in range(1, int(k) * s):
+        sample = abs(int(_parse(eq, t)))
+        sample = sample % 256
         buffer.append(sample & 0xFF)
     return buffer
 
