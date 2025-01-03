@@ -24,7 +24,7 @@ def _buffer(eq, s, k=8000):
         'radians': radians,'remainder': remainder,'sin': sin,'sinh': sinh,
         'sqrt': sqrt,'sumprod': prod,'tan': tan,'tanh': tanh,'tau': tau,'trunc': trunc,'ulp': ulp,
         'abs': abs, 'int': int, 'round': round, '^': pw, 't': t,
-        '//': div, '/': truediv, '&': b_and, '|': b_or, '>>': rs, '<<': ls
+        '//': div, '/': truediv, '&': b_and, '|': b_or, '>>': rs, '<<': ls, 'ramd': rand
         })))
             sample = sample % 256
         except Exception as e:
