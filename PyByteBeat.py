@@ -24,8 +24,8 @@ functions = {
 
 def _parse(equation, t):
     equation = equation.replace('t', 'int(t)')
-    equation = equation.replace('/', '//')
-    equation = equation.replace('////', '//')
+    equation = equation.replace('/', '//').replace('////', '//')
+    equation = equation.replace('?', ' and ').replace(':', ' or ')
     try:
         local_vars = {'t': int(t)}
         local_vars.update(functions)
@@ -68,5 +68,5 @@ def _wav(f, buffer, s, k=8000):
 equation = ''
 seconds = 10
 buffer = _buffer(equation, seconds)
-output_file = "output.wav"
+output_file = "output1.wav"
 _wav(output_file, buffer, seconds)
